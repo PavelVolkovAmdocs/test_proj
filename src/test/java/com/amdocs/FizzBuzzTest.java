@@ -80,6 +80,7 @@ public class FizzBuzzTest extends FizzBuzz {
 
         Assert.assertEquals("Fizz: 2, 4, 6, 8, 12, 14, 16, 18", fb.getResult(0, arrLables));
         Assert.assertEquals("Buzz: 5, 15", fb.getResult(1, arrLables));
+        Assert.assertEquals("Shmaz:", fb.getResult(2, arrLables));
         Assert.assertEquals("FizzBuzzShmaz: 10, 20", fb.getResultCombined( arrLables));
 
         fb.clean();
