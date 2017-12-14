@@ -10,7 +10,7 @@ public class FizzBuzz {
     private static int arrMult [] = {3,5};
     // Tags for multiples to print. The size must be same as arrMult.
     // We do not check the size in this version as both arrays are hardcoded...
-    private String arrLables [] = {"Fizz","Buzz"};
+    private static String arrLables [] = {"Fizz","Buzz"};
 
     // we will use LinedList as an optimal collection
     // for iterations and appending to the tail
@@ -104,6 +104,10 @@ public class FizzBuzz {
                 Integer inpBound = Integer.parseInt(sUserInput);
                 FizzBuzz fb = new FizzBuzz(inpBound);
                 fb.findMultiples(arrMult, inpBound);
+                System.out.println(fb.getResult(0, arrLables));
+                System.out.println(fb.getResult(1, arrLables));
+                System.out.println(fb.getResultCombined( arrLables));
+
                 booProceed = false;
             }catch(NumberFormatException nfe){
                 System.out.println("ERROR: FizzBuzz upper boundary must be an integer !!!");
