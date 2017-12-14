@@ -37,21 +37,44 @@ public class FizzBuzz {
     //generic function for finding multiples based on given multiples array.
     //passing multiples as argument to generalize the function...
     protected void findMultiples( int i_arrMult [], int upperBound ){
-        for (int i = 1; i < upperBound; i++ ){
+        for (int i = 1; i <= upperBound; i++ ){
+            boolean allMult = true;
             for(int j = 0; j < i_arrMult.length; j++){
-                boolean allMult = true;
                 if (i % i_arrMult[j] == 0){
-                    resPerMultiple[j].add(i);
+                    resPerMultiple[j].add(i);// same as addLast here
                 }
                 else{
                     allMult = false;
                 }
-                // add to combinations and remove from each list ...
-                if(allMult){
-
+            }
+            // add to combinations and remove from each list ...
+            if(allMult){
+                resCombined.add(i);
+                //remove last from each list
+                for(int k = 0; k < i_arrMult.length; k++) {
+                    ((LinkedList)resPerMultiple[k]).removeLast();
                 }
             }
         }
+    }
+
+    protected String getResultCombined (String i_arrLables[]){
+        StringBuffer buf = new StringBuffer();
+        //print combination:
+        for(int j = 0; j < i_arrLables.length; j++) {
+            buf.append(i_arrLables[j]);
+        }
+        buf.append(":");
+
+        Iterator iter = resCombined.iterator();
+        while(iter.hasNext()){
+            Integer i = (Integer)iter.next();
+            buf.append(" " + i);
+            if(iter.hasNext())
+                buf.append(",");
+        }
+
+        return buf.toString();
     }
 
     protected String getResult(int num, String i_arrLables[]){
