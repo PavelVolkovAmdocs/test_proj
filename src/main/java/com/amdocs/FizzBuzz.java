@@ -92,20 +92,22 @@ public class FizzBuzz {
      */
     protected String getResultCombined (String i_arrLables[]){
         StringBuffer buf = new StringBuffer();
-        //print combination:
-        for(int j = 0; j < i_arrLables.length; j++) {
-            buf.append(i_arrLables[j]);
-        }
-        buf.append(":");
 
-        Iterator iter = resCombined.iterator();
-        while(iter.hasNext()){
-            Integer i = (Integer)iter.next();
-            buf.append(" " + i);
-            if(iter.hasNext())
-                buf.append(",");
-        }
+        if(i_arrLables.length > 0) {
+            //print combination:
+            for (int j = 0; j < i_arrLables.length; j++) {
+                buf.append(i_arrLables[j]);
+            }
+            buf.append(":");
 
+            Iterator iter = resCombined.iterator();
+            while (iter.hasNext()) {
+                Integer i = (Integer) iter.next();
+                buf.append(" " + i);
+                if (iter.hasNext())
+                    buf.append(",");
+            }
+        }
         return buf.toString();
     }
 
@@ -118,8 +120,9 @@ public class FizzBuzz {
      */
     protected String getResult(int num, String i_arrLables[]){
         StringBuffer buf = new StringBuffer();
+        if(i_arrLables.length > num)
+              buf.append(i_arrLables[num] + ":");
         if(resPerMultiple.length > num){
-            buf.append(i_arrLables[num] + ":");
             Iterator iter = resPerMultiple[num].iterator();
             while(iter.hasNext()){
                 Integer i = (Integer)iter.next();

@@ -21,6 +21,39 @@ public class FizzBuzzTest extends FizzBuzz {
     }
 
     @Test
+    public void testFind2Multiples0Negative() throws Exception {
+        int arrMult [] = {3,5};
+        final int upper = 0;
+        String arrLables [] = {"Fizz","Buzz"};
+
+        FizzBuzz fb = new FizzBuzz(upper);
+        fb.findMultiples(arrMult, upper);
+
+        Assert.assertEquals("Fizz:", fb.getResult(0, arrLables));
+        Assert.assertEquals("Buzz:", fb.getResult(1, arrLables));
+        Assert.assertEquals("FizzBuzz:", fb.getResultCombined( arrLables));
+
+        fb.clean();
+    }
+
+
+    @Test
+    public void testFindNoMultiples15Negative() throws Exception {
+        int arrMult [] = {};
+        final int upper = 15;
+        String arrLables [] = {};
+
+        FizzBuzz fb = new FizzBuzz(upper);
+        fb.findMultiples(arrMult, upper);
+
+        Assert.assertEquals("", fb.getResult(0, arrLables));
+        Assert.assertEquals("", fb.getResult(1, arrLables));
+        Assert.assertEquals("", fb.getResultCombined( arrLables));
+
+        fb.clean();
+    }
+
+    @Test
     public void testFind2Multiples100() throws Exception {
         int arrMult [] = {3,5};
         final int upper = 100;
