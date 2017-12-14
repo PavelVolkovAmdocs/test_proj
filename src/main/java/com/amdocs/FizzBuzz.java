@@ -1,12 +1,13 @@
 package com.amdocs;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class FizzBuzz {
     // Holds the multiples. The code can be scaled up by adding more multiples to the list...
-    private int arrMult [] = {3,5};
+    private static int arrMult [] = {3,5};
     // Tags for multiples to print. The size must be same as arrMult.
     // We do not check the size in this version as both arrays are hardcoded...
     private String arrLables [] = {"Fizz","Buzz"};
@@ -31,7 +32,6 @@ public class FizzBuzz {
         for (int i = 0; i < upperBound; i++){
             resPerMultiple [i] = new LinkedList<Integer>();
         }
-        findMultiples(arrMult, upperBound);
     }
 
     //generic function for finding multiples based on given multiples array.
@@ -54,6 +54,22 @@ public class FizzBuzz {
         }
     }
 
+    protected String getResult(int num, String i_arrLables[]){
+        StringBuffer buf = new StringBuffer();
+        if(resPerMultiple.length > num){
+            buf.append(i_arrLables[num] + ":");
+            Iterator iter = resPerMultiple[num].iterator();
+            while(iter.hasNext()){
+                Integer i = (Integer)iter.next();
+                buf.append(" " + i);
+                if(iter.hasNext())
+                    buf.append(",");
+            }
+
+        }
+        return buf.toString();
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String sUserInput = "";
@@ -63,7 +79,8 @@ public class FizzBuzz {
             sUserInput = in.next();
             try{
                 Integer inpBound = Integer.parseInt(sUserInput);
-                new FizzBuzz(inpBound);
+                FizzBuzz fb = new FizzBuzz(inpBound);
+                fb.findMultiples(arrMult, inpBound);
                 booProceed = false;
             }catch(NumberFormatException nfe){
                 System.out.println("ERROR: FizzBuzz upper boundary must be an integer !!!");
