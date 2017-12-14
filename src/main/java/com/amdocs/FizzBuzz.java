@@ -15,14 +15,20 @@ public class FizzBuzz {
     // we will use LinedList as an optimal collection
     // for iterations and appending to the tail
     private List resPerMultiple [] = null;
-    // this is to hold results for combinations of multiples...
+    // this is to hold results for common of multiples...
     private List resCombined = new LinkedList();
 
-    //default constructor ...
+    /**
+     * default constructor ...
+     */
     public FizzBuzz() {
     }
 
-    // public constructor...
+
+    /**
+     * public constructor initializes class based on upperBoundary param...
+     * @param upperBound - an upper bound for finding multiples
+     */
     protected FizzBuzz(int upperBound){
         System.out.println("FizzBuzz Results");
         System.out.println("==============================");
@@ -34,8 +40,13 @@ public class FizzBuzz {
         }
     }
 
-    //generic function for finding multiples based on given multiples array.
-    //passing multiples as argument to generalize the function...
+
+    /**
+     * generic function for finding multiples based on given multiples array.
+     * passing multiples as argument to generalize the function...
+     * @param i_arrMult  - an array of multiples
+     * @param upperBound - an upper bound for finding multiples
+     */
     protected void findMultiples( int i_arrMult [], int upperBound ){
         for (int i = 1; i <= upperBound; i++ ){
             boolean allMult = true;
@@ -58,6 +69,27 @@ public class FizzBuzz {
         }
     }
 
+    /**
+     * clear the objects, so the GC will start cleaning the memory
+     * this method may be called once all results have been received
+     * and it is known that the object will not be used anymore
+     */
+    public void clean(){
+        for(int i = 0; i < resPerMultiple.length; i ++) {
+            resPerMultiple[i].clear();
+            resPerMultiple[i] = null;
+        }
+
+        resCombined.clear();
+        resCombined = null;
+    }
+
+    /**
+     * gets result for common multiples ...
+     * @param i_arrLables - an array of multiple's tags such as "Fizz", "Buzz"
+     *                      must be of the same size as multiples array
+     * @return resulting string for common multiples
+     */
     protected String getResultCombined (String i_arrLables[]){
         StringBuffer buf = new StringBuffer();
         //print combination:
@@ -77,6 +109,13 @@ public class FizzBuzz {
         return buf.toString();
     }
 
+    /**
+     * gets result for multiples of given sequence number in multiples array ...
+     * @param num a sequence number in multiples array
+     * @param i_arrLables  - an array of multiple's tags such as "Fizz", "Buzz"
+     *                       must be of the same size as multiples array
+     * @return  resulting string for multiples of given sequence number in multiples array
+     */
     protected String getResult(int num, String i_arrLables[]){
         StringBuffer buf = new StringBuffer();
         if(resPerMultiple.length > num){
@@ -88,7 +127,6 @@ public class FizzBuzz {
                 if(iter.hasNext())
                     buf.append(",");
             }
-
         }
         return buf.toString();
     }
@@ -107,6 +145,7 @@ public class FizzBuzz {
                 System.out.println(fb.getResult(0, arrLables));
                 System.out.println(fb.getResult(1, arrLables));
                 System.out.println(fb.getResultCombined( arrLables));
+                fb.clean();
 
                 booProceed = false;
             }catch(NumberFormatException nfe){
