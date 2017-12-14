@@ -76,12 +76,16 @@ public class FizzBuzz {
      */
     public void clean(){
         for(int i = 0; i < resPerMultiple.length; i ++) {
-            resPerMultiple[i].clear();
-            resPerMultiple[i] = null;
+          if(resPerMultiple[i] != null) {
+              resPerMultiple[i].clear();
+              resPerMultiple[i] = null;
+          }
         }
 
-        resCombined.clear();
-        resCombined = null;
+       if(resCombined != null) {
+           resCombined.clear();
+           resCombined = null;
+       }
     }
 
     /**
@@ -151,8 +155,8 @@ public class FizzBuzz {
                 fb.clean();
 
                 booProceed = false;
-            }catch(NumberFormatException nfe){
-                System.out.println("ERROR: FizzBuzz upper boundary must be an integer !!!");
+            }catch(Exception nfe){
+                System.out.println("ERROR: FizzBuzz upper boundary must be a positive integer !!!");
             }
         } while(booProceed);
         //System.out.println("Completed...");
