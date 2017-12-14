@@ -17,8 +17,12 @@ public class FizzBuzz {
     // this is to hold results for combinations of multiples...
     private List resCombined = new LinkedList();
 
+    //default constructor ...
+    public FizzBuzz() {
+    }
+
     // public constructor...
-    public FizzBuzz(int upperBound){
+    protected FizzBuzz(int upperBound){
         System.out.println("FizzBuzz Results");
         System.out.println("==============================");
 
@@ -32,7 +36,7 @@ public class FizzBuzz {
 
     //generic function for finding multiples based on given multiples array.
     //passing multiples as argument to generalize the function...
-    private void findMultiples( int i_arrMult [], int upperBound ){
+    protected void findMultiples( int i_arrMult [], int upperBound ){
         for (int i = 1; i < upperBound; i++ ){
             for(int j = 0; j < i_arrMult.length; j++){
                 boolean allMult = true;
@@ -49,6 +53,7 @@ public class FizzBuzz {
             }
         }
     }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String sUserInput = "";
